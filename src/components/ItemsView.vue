@@ -16,6 +16,55 @@
         </div>
         <div class="items-box">
           <!-- item 슬라이드 -->
+          <Swiper 
+            class="sw-items"
+            :modules="modules"
+            :autoplay="{
+              delay: 1000,
+              disableOnInteraction: false,
+            }"
+            :loop="true"
+            :navigation="{
+              prevEl: '.sw-items-prev',
+              nextEl: '.sw-items-next'
+            }"
+            :pagination="{
+              el: '.sw-items-pg',
+              clickable: true
+            }"
+            >
+
+            <SwiperSlide>
+              <a href="#" class="items-1"></a>
+            </SwiperSlide>
+              
+            <SwiperSlide>
+              <a href="#" class="items-2"></a>
+            </SwiperSlide>
+              
+            <SwiperSlide>
+              <a href="#" class="items-3"></a>
+            </SwiperSlide>
+              
+            <SwiperSlide>
+              <a href="#" class="items-4"></a>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <a href="#" class="items-5"></a>
+            </SwiperSlide>
+            
+            <!-- 이동버튼 -->
+            <button class="sw-items-prev"></button>
+            <button class="sw-items-next"></button>
+            <!-- 콘트롤 -->
+            <div class="sw-items-control">
+              <!-- Pagination -->
+              <div class="sw-items-pg"></div>
+            </div>
+
+          </Swiper>
+
           <div class="swiper-container sw-items">
             <!-- 기본형 : 슬라이드 내용 -->
             <div class="swiper-wrapper">
@@ -35,14 +84,7 @@
                 <a href="#" class="items-5"></a>
               </div>
             </div>
-            <!-- 이동버튼 -->
-            <button class="sw-items-prev"></button>
-            <button class="sw-items-next"></button>
-            <!-- 콘트롤 -->
-            <div class="sw-items-control">
-              <!-- Pagination -->
-              <div class="sw-items-pg"></div>
-            </div>
+            
           </div>
         </div>
         <div class="items-box">
@@ -87,12 +129,30 @@
 </template>
 
 <script>
+
+import {Autoplay, Navigation, Pagination} from 'swiper';
+import {Swiper, SwiperSlide} from 'swiper/vue'
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 export default {
+
+  components: {
+    Swiper,
+    SwiperSlide
+  },
+
+  setup() {
+    return {
+      modules: [Autoplay, Navigation, Pagination]
+    }
+  }
 
 }
 </script>
 
-<style scoped>
+<style>
 /* items */
 .items {
   position: relative;
