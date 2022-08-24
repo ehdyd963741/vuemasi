@@ -7,19 +7,16 @@
           <span>마시그래이의 다양한 메뉴를 맛보세요</span>
         </div>
         <!-- beverage 슬라이드 -->
-        <div class="swiper-container sw-beverage">
-          <!-- 슬라이드내용 -->
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <a href="#"><img :src="require('@/assets/images/menu_slide01.png')" alt=""></a>
-            </div>
-            <div class="swiper-slide">
-              <a href="#"><img :src="require('@/assets/images/menu_slide02.png')" alt=""></a>
-            </div>
-            <div class="swiper-slide">
-              <a href="#"><img :src="require('@/assets/images/menu_slide03.png')" alt=""></a>
-            </div>
-          </div>
+        <Swiper>
+          <SwiperSlide>
+            <a href="#"><img :src="require('@/assets/images/menu_slide01.png')" alt=""></a>
+          </SwiperSlide>
+          <SwiperSlide>
+            <a href="#"><img :src="require('@/assets/images/menu_slide02.png')" alt=""></a>
+          </SwiperSlide>
+          <SwiperSlide>
+            <a href="#"><img :src="require('@/assets/images/menu_slide03.png')" alt=""></a>
+          </SwiperSlide>
           <!-- 좌우버튼 -->
           <div class="sw-beverage-prev"></div>
           <div class="sw-beverage-next"></div>
@@ -27,15 +24,30 @@
           <div class="sw-beverage-control">
             <div class="sw-beverage-pg"></div>
           </div>
-        </div>
+        </Swiper>
+        
 
       </div>
     </section>
 </template>
 
 <script>
-export default {
 
+import {Autoplay, Navigation } from 'swiper';
+import {Swiper, SwiperSlide} from 'swiper/vue';
+import 'swiper/css';
+import 'swiper/css/navigation';
+
+export default {
+  components: {
+    Swiper,
+    SwiperSlide
+  },
+  setup () {
+    return{
+      modules:[Autoplay, Navigation]
+    }
+  }
 }
 </script>
 
