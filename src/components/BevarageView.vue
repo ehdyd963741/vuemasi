@@ -7,7 +7,20 @@
           <span>마시그래이의 다양한 메뉴를 맛보세요</span>
         </div>
         <!-- beverage 슬라이드 -->
-        <Swiper>
+        <Swiper
+          class="sw-bevarage"
+          :modules="modules"
+          :autoplay="{
+            delay: 1000,
+            disableOnInteraction: false,
+          }"
+          :loop="true"
+          :navigation="{
+            prevEl: '.sw-beverage-prev',
+            nextEl: '.sw-beverage-next'
+          }"
+
+        >
           <SwiperSlide>
             <a href="#"><img :src="require('@/assets/images/menu_slide01.png')" alt=""></a>
           </SwiperSlide>
