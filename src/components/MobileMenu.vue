@@ -40,12 +40,18 @@
 <script>
   import $ from 'jquery';
   import {
+    computed,
     onMounted
   } from 'vue';
+
+  import { useStore } from 'vuex'
   export default {
-    props: ['menudata'],
 
     setup() {
+      // vuex 의 모든 기능을 쓰려고 생성
+      const store = useStore();
+      // vuex 의 state 변화 감시
+      const menudata = computed( () => store.getters.getMenuData);
       onMounted(() => {
         // 모바일 메뉴 기능
         // 1. 펼침메뉴 기능
@@ -137,7 +143,9 @@
 
       });
 
-      return {}
+      return {
+        menudata
+      }
     }
   }
 </script>

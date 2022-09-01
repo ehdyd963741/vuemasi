@@ -57,7 +57,7 @@ export default {
   color: #666;
 }
 
-@media all and(max-width:1000px) {
+@media all and (max-width:1000px) {
   .sns {
     padding: 10vw;
   }

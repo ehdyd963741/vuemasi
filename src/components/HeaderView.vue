@@ -26,7 +26,7 @@
                 </ul>
               </li>
             </ul>
-            
+
           </div>
         </div>
 
@@ -36,12 +36,15 @@
 
 <script>
 import $ from 'jquery';
-import { onMounted } from 'vue';
-
+import { computed, onMounted } from 'vue';
+import { useStore } from 'vuex'
 export default {
-  props: ['menudata'],
 
   setup() {
+    // vuex 의 모든 기능을 쓰려고 생성
+      const store = useStore();
+    // vuex 의 state 변화 감시
+      const menudata = computed( () => store.getters.getMenuData);
     //js 코드 하기 
     onMounted(() => {
     // 메인 메뉴 기능
@@ -79,6 +82,7 @@ export default {
     });
     
     return {
+      menudata
     }
   }
 }

@@ -1,9 +1,9 @@
 <template>
   <div class="wrap">
     <GoTop />
-    <MobileMenu :menudata="menuData"/>
+    <MobileMenu />
     <FixMenu />
-    <HeaderView :menudata="menuData"/>
+    <HeaderView/>
     <VisualView />
     <ItemsView />
     <BevarageView />
@@ -25,8 +25,8 @@ import BevarageView from '@/components/BevarageView.vue'
 import FranchView from '@/components/FranchView.vue'
 import SnsView from '@/components/SnsView.vue'
 import FooterView from '@/components/FooterView.vue'
+import axios from 'axios'
 
-import {ref} from 'vue';
 
 export default {
   name: 'App',
@@ -43,78 +43,19 @@ export default {
     FooterView
   },
   setup() {
-    // 메뉴 데이터
-    const menuData = ref([]);
-    // ref로 생성했다면, value로 접근한다.
-    menuData.value = [
-      {
-        mainstr: '마시그래이',
-        mainlink: '#',
-        sub:[
-          {substr:'회사소개', sublink: '#'},
-          {substr:'연혁', sublink: '#'},
-          {substr:'CEO인사말', sublink: '#'},
-          {substr:'BI / 비전', sublink: '#'},
-          {substr:'오시는길', sublink: '#'}
-        ]
-      },
-      {
-        mainstr: '메뉴',
-        mainlink: '#',
-        sub:[
-          {substr:'신메뉴', sublink: '#'},
-          {substr:'커피', sublink: '#'},
-          {substr:'음료', sublink: '#'},
-          {substr:'디저트', sublink: '#'},
-          {substr:'MD상품', sublink: '#'}
-        ]
-      },
-      {
-        mainstr: '프랜차이즈',
-        mainlink: '#',
-        sub:[
-          {substr:'가맹안내', sublink: '#'},
-          {substr:'가맹절차', sublink: '#'},
-          {substr:'매장인테리어', sublink: '#'},
-          {substr:'커피 아카데미', sublink: '#'},
-          {substr:'가맹상담신청', sublink: '#'}
-        ]
-      },
-      {
-        mainstr: '매장안내',
-        mainlink: '#',
-        sub:[
-          {substr:'매장안내', sublink: '#'}
-        ]
-      },
-      {
-        mainstr: '공지사항',
-        mainlink: '#',
-        sub:[
-          {substr:'공지사항', sublink: '#'},
-          {substr:'이벤트', sublink: '#'}
-        ]
-      },
-      {
-        mainstr: '고객의소리',
-        mainlink: '#',
-        sub:[
-          {substr:'FAQ', sublink: '#'},
-          {substr:'Q&amp;A', sublink: '#'},
-          {substr:'케이터링', sublink: '#'}
-        ]
-      }
-    ];
-    
+    // 외부에 있는 메뉴데이터 menu.json 파일을 불러온다.
+    axios.get('/data/menu.json')
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(err => console.log(err));
     return {
-      menuData
     }
   }
 }
 </script>
 
 <style>
-
 @charset 'utf-8';
 * {
   margin: 0;
