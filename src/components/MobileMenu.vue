@@ -41,7 +41,7 @@
   import $ from 'jquery';
   import {
     computed,
-    onMounted
+    onUpdated
   } from 'vue';
 
   import { useStore } from 'vuex'
@@ -52,18 +52,32 @@
       const store = useStore();
       // vuex 의 state 변화 감시
       const menudata = computed( () => store.getters.getMenuData);
-      onMounted(() => {
+
+      // console.log("setUp () 메소드 ================", menudata.value);
+
+      onUpdated(() => {
+
+        // console.log("onMounted () 메소드 ================", menudata.value);
         // 모바일 메뉴 기능
         // 1. 펼침메뉴 기능
         // let mb_menu_li = $('.mb-menu > li');
         let mb_mainmenu = $('.mb-menu > li > a');
         let mb_submenu = $('.mb-submenu');
 
+        // console.log('펼침메뉴 :', mb_mainmenu)
+
         $.each(mb_mainmenu, function (index) {
+          
+          // 이벤트 바인딩 : 이벤트를 추후에 연결 시켜준다.
+          $(this).on('click', function(event){
+            event.preventDefault();
+            // alert(index);
+          });
+
+
           $(this).click(function (event) {
             // href 를 막아준다.
             event.preventDefault();
-
             // 클릭하면 현재 포커스 클래스가 있는지 검토
             let temp = $(this).hasClass('mb-menu-focus');
 
